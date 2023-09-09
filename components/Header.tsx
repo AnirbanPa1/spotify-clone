@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { HiHome } from "react-icons/hi";
@@ -11,6 +11,7 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useUser } from "@/hooks/useUser";
 import { FaUserAlt } from "react-icons/fa";
 import { toast } from "react-hot-toast";
+import Link from "next/link";
 
 interface HeaderProps{
     children: React.ReactNode;
@@ -22,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({
     className
 }) => {
     const authModal = useAuthModal();
-    const router = useRouter();
+    const router = useRouter()
 
     const supabaseClient = useSupabaseClient();
     const { user } = useUser();
@@ -57,16 +58,18 @@ const Header: React.FC<HeaderProps> = ({
                     </button>
                 </div>
                 <div className="flex md:hidden gap-x-2 items-center">
-                    <button 
-                        className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition"
+                    <Link 
+                        className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition" 
+                        href={"/"}
                     >
                         <HiHome className="text-black" size={20}/>
-                    </button>
-                    <button 
+                    </Link>
+                    <Link 
                         className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition"
+                        href={"/search"}
                     >
                         <BiSearch className="text-black" size={20}/>
-                    </button>
+                    </Link>
                 </div>
                 <div className="flex justify-between items-center gap-x-4">
                     {user ? (

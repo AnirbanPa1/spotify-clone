@@ -102,8 +102,10 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
             <div
                 className="flex w-full justify-start"
             >
-                <div className="flex items-center gap-x-4">
+                <div className="flex items-center gap-x-4 truncate overflow-hidden">
                     <MediaItem data={song}/>
+                </div>
+                <div className="flex items-center gap-x-4">
                     <LikeButton songId={song.id}/>
                 </div>
             </div>
